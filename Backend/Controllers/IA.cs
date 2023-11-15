@@ -1,10 +1,5 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace Backend.Controllers;
 
@@ -22,11 +17,7 @@ public class IA : ControllerBase
         {
             string url = "http://localhost:3030/IA";
 
-            var novo = new PersonData();
-
-            string conteudo = JsonConvert.SerializeObject(novo);
-
-            HttpResponseMessage response = await httpClient.PostAsync(url, conteudo);
+            HttpResponseMessage response = await httpClient.PostAsJsonAsync(url, dados);
 
             if (response.IsSuccessStatusCode)
             {

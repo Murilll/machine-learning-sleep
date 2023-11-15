@@ -7,12 +7,27 @@ import numpy as np
 
 # https://flask.palletsprojects.com/en/3.0.x/quickstart/#routing
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-@app.route('/IA')
+@app.route('/IA', methods=['POST'])
 def IA():
+    
+    if request.is_json:
+        dados = request.json
+        
+    gender = dados['gender']
+    age = dados['age']
+    sleepDuration = dados['sleepDuration']
+    physical = dados['physical']
+    stressLevel = dados['stressLevel']
+    bmi = dados['bmi']
+    bloodPressure = dados['bloodPressure']
+    heart = dados['heart']
+    steps = dados['steps']
+    sleepDisorder = dados['sleepDisorder']
+    
     dataset = pd.read_csv("./Dataset/Sleep_health_and_lifestyle_dataset.csv")
     
     dataset[['PressaoSistolica', 'PressaoDiastolica']] = dataset['Blood Pressure'].str.split("/", expand=True)
@@ -36,18 +51,15 @@ def IA():
     model = DecisionTreeClassifier(max_depth=12, min_samples_split=10)
     model.fit(X_train, Y_train)
     
-    print(model)
-    
     Y_pred = model.predict(X_test)
     accuracy = accuracy_score(Y_test, Y_pred)
-    print(accuracy)
     
-    new_data = [[1, 20, 324, 23, 1, 43, 543, 12, 4324, 2]]
+    new_data = [[gender, age, sleepDuration, physical, stressLevel, bmi, bloodPressure, heart, steps, sleepDisorder]]
     predictions = model.predict(new_data)
     
     predictions_list = predictions.tolist()
     
-    response = jsonify({'result': {'accuracy': accuracy, 'predictions': predictions_list}})
+    response = jsonify({'result': {'person': dados, 'accuracy': accuracy, 'predictions': predictions_list}})
     
     return response
 
