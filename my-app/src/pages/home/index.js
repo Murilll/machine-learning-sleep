@@ -20,26 +20,35 @@ export default function Home() {
     const [sleepDisorder, setDisorder] = useState(0);
 
     const obj = {
-        gender: gender,
-        age: age,
-        sleepDuration: sleepDuration,
-        physical: physical,
-        stress: stress,
-        bmi: bmi,
-        bloodPressure: bloodPressure,
-        heart: heart,
-        steps: steps,
-        sleepDisorder: sleepDisorder
+        Gender: gender,
+        Age: age,
+        SleepDuration: sleepDuration,
+        Physical: physical,
+        StressLevel: stress,
+        BMI: bmi,
+        BloodPressure: bloodPressure,
+        Heart: heart,
+        Steps: steps,
+        SleepDisorder: sleepDisorder
     }
 
-    const fetchData = useCallback(async () => {
+    const sendObj = useCallback(async () => {
         try {
-            const res = await axios.get('http://localhost:5194/IA')
-            console.log(res.data)
+            const res = await axios.post('http://localhost:5194/IA', obj)
+            console.log(res)
         } catch (error) {
-            console.log("erro")
+            console.log("failed")
         }
-    }, []);
+    })
+
+    // const fetchData = useCallback(async () => {
+    //     try {
+    //         const res = await axios.get('http://localhost:5194/IA')
+    //         console.log(res.data)
+    //     } catch (error) {
+    //         console.log("erro")
+    //     }
+    // }, []);
 
     // useEffect(() => {
     //     fetchData()
@@ -95,7 +104,7 @@ export default function Home() {
                     <option value="2">Insomnia</option>
                 </Form.Select>
                 <div>
-                    <Button variant="primary" onClick={() => console.log(obj)}>Send</Button>{' '}
+                    <Button variant="primary" onClick={() => sendObj()}>Send</Button>{' '}
                 </div>
             </div>
         </div>

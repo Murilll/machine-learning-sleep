@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
+using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Backend.Controllers;
 
@@ -9,9 +12,9 @@ namespace Backend.Controllers;
 [Route("IA")]
 public class IA : ControllerBase
 {
-    [HttpGet("")]
+    [HttpPost("")]
     [EnableCors("MainPolicy")]
-    public async Task<string> RequestIA()
+    public async Task RequestIA([FromBody] PersonData dados)
     {
         using (HttpClient httpClient = new HttpClient())
 
@@ -19,24 +22,24 @@ public class IA : ControllerBase
         {
             string url = "http://localhost:3030/IA";
 
-            HttpResponseMessage response = await httpClient.GetAsync(url);
+            var novo = new PersonData();
+
+            string conteudo = JsonConvert.SerializeObject(novo);
+
+            HttpResponseMessage response = await httpClient.PostAsync(url, conteudo);
 
             if (response.IsSuccessStatusCode)
             {
                 string conteudo = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(conteudo);
-                return conteudo;
             }
             else
-            {
                 Console.WriteLine($"Erro na requisição: {response.StatusCode} - {response.ReasonPhrase}");
-                return "erro";
-            }
+               
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Ocorreu um erro: {ex.Message}");
-            return "erro";
+            Console.WriteLine($"Ocorreu um erro: {ex.Message}"); 
         }
     }
 }
