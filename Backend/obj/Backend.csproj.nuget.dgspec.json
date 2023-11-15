@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\disrct\\Desktop\\machine-learning-sleep\\Backend\\Backend.csproj": {}
+    "C:\\Users\\muril\\OneDrive\\Área de Trabalho\\machine-learning-sleep\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\disrct\\Desktop\\machine-learning-sleep\\Backend\\Backend.csproj": {
+    "C:\\Users\\muril\\OneDrive\\Área de Trabalho\\machine-learning-sleep\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\disrct\\Desktop\\machine-learning-sleep\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\muril\\OneDrive\\Área de Trabalho\\machine-learning-sleep\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\disrct\\Desktop\\machine-learning-sleep\\Backend\\Backend.csproj",
-        "packagesPath": "C:\\Users\\disrct\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\disrct\\Desktop\\machine-learning-sleep\\Backend\\obj\\",
+        "projectPath": "C:\\Users\\muril\\OneDrive\\Área de Trabalho\\machine-learning-sleep\\Backend\\Backend.csproj",
+        "packagesPath": "C:\\Users\\muril\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\muril\\OneDrive\\Área de Trabalho\\machine-learning-sleep\\Backend\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\disrct\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\muril\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -77,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     }

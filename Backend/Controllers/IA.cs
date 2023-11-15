@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace Backend.Controllers;
 public class IA : ControllerBase
 {
     [HttpGet("")]
+    [EnableCors("MainPolicy")]
     public async Task<string> RequestIA()
     {
         using (HttpClient httpClient = new HttpClient())

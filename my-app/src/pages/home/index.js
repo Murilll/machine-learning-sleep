@@ -15,6 +15,7 @@ export default function Home() {
     const fetchData = useCallback(async () => {
         try {
             const res = await axios.get('http://localhost:5194/IA')
+            console.log(res.data)
         } catch (error) {
             console.log("erro")
         }
