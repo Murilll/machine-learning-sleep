@@ -42,7 +42,12 @@ def IA():
     accuracy = accuracy_score(Y_test, Y_pred)
     print(accuracy)
     
-    response = jsonify({'result': accuracy})
+    new_data = [[1, 20, 324, 23, 1, 43, 543, 12, 4324, 2]]
+    predictions = model.predict(new_data)
+    
+    predictions_list = predictions.tolist()
+    
+    response = jsonify({'result': {'accuracy': accuracy, 'predictions': predictions_list}})
     
     return response
 
