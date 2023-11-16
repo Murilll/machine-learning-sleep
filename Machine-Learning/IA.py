@@ -17,16 +17,16 @@ def IA():
     if request.is_json:
         dados = request.json
         
-    gender = dados['gender']
     age = dados['age']
-    sleepDuration = dados['sleepDuration']
-    physical = dados['physical']
-    stressLevel = dados['stressLevel']
-    bmi = dados['bmi']
     bloodPressure = dados['bloodPressure']
+    bmi = dados['bmi']
+    gender = dados['gender']
     heart = dados['heart']
-    steps = dados['steps']
+    physical = dados['physical']
     sleepDisorder = dados['sleepDisorder']
+    sleepDuration = dados['sleepDuration']
+    steps = dados['steps']
+    stressLevel = dados['stressLevel']
     
     dataset = pd.read_csv("./Dataset/Sleep_health_and_lifestyle_dataset.csv")
     
@@ -59,9 +59,7 @@ def IA():
     
     predictions_list = predictions.tolist()
     
-    # response = jsonify({'result': {'person': dados, 'accuracy': accuracy, 'predictions': predictions_list}})
-    
-    response = predictions_list
+    response = jsonify({'result': predictions_list})
     
     return response
 
