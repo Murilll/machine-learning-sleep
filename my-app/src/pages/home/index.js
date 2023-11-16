@@ -129,16 +129,16 @@ export default function Home() {
                 </InputGroup>
                 <Form.Select onClick={(e) => setStress(e.target.value)} className="mb-3" aria-label="Default select example">
                     <option>Stress Level</option>
-                    <option style={{color: 'blue'}} value="0">No pain</option>
-                    <option value="1">Very mild</option>
-                    <option value="2">Discomforting</option>
-                    <option value="3">Tolerable</option>
-                    <option value="4">Distressing</option>
-                    <option value="5">Very distrassing</option>
-                    <option value="6">Intense</option>
-                    <option value="7">Very Intense</option>
-                    <option value="8">Utterly horrible</option>
-                    <option value="9">Unimaginable Unspeakable</option>
+                    <option style={{color: '#01D300'}} value="0">No pain</option>
+                    <option style={{color: '#7FE611'}} value="1">Very mild</option>
+                    <option style={{color: '#7FE611'}} value="2">Discomforting</option>
+                    <option style={{color: '#FFF823'}} value="3">Tolerable</option>
+                    <option style={{color: '#FFF823'}} value="4">Distressing</option>
+                    <option style={{color: '#FF8B24'}} value="5">Very distrassing</option>
+                    <option style={{color: '#FF8B24'}} value="6">Intense</option>
+                    <option style={{color: '#F54337'}} value="7">Very Intense</option>
+                    <option style={{color: '#F54337'}} value="8">Utterly horrible</option>
+                    <option style={{color: '#D81415'}} value="9">Unimaginable Unspeakable</option>
                 </Form.Select>
                 <Form.Select onClick={(e) => setBMI(e.target.value)} className="mb-3" aria-label="Default select example">
                     <option>BMI Category</option>

@@ -12,43 +12,43 @@ public class IA : ControllerBase
     [EnableCors("MainPolicy")]
     public async Task<string> RequestIA([FromBody] PersonData dados)
     {
-        using (HttpClient httpClient = new HttpClient())
-            try
+        HttpClient httpClient = new HttpClient();
+        try
+        {
+            string url = "http://localhost:3030/IA";
+
+            HttpResponseMessage response = await httpClient.PostAsJsonAsync(url, dados);
+
+            if (response.IsSuccessStatusCode)
             {
-                string url = "http://localhost:3030/IA";
+                string conteudo = await response.Content.ReadAsStringAsync();
 
-                HttpResponseMessage response = await httpClient.PostAsJsonAsync(url, dados);
+                int number = 0;
 
-                if (response.IsSuccessStatusCode)
-                {
-                    string conteudo = await response.Content.ReadAsStringAsync();
+                Regex regex = new Regex(@"\d+");
+                MatchCollection matches = regex.Matches(conteudo);
 
-                    int number = 0;
+                foreach (Match match in matches)
+                    if (int.TryParse(match.Value, out int extractedNumber))
+                        number = extractedNumber;
 
-                    Regex regex = new Regex(@"\d+");
-                    MatchCollection matches = regex.Matches(conteudo);
+                if (number <= 5)
+                    return "you're going to have a horrible night's sleep.";
 
-                    foreach (Match match in matches)
-                        if (int.TryParse(match.Value, out int extractedNumber))
-                            number = extractedNumber;
+                else if (number <= 7)
+                    return "you will have a ok night's sleep.";
 
-                    if (number <= 5)
-                        return "you're going to have a horrible night's sleep.";
-
-                    else if (number <= 7)
-                        return "you will have a ok night's sleep.";
-
-                    else
-                        return "you will have a great night's sleep.";
-                }
                 else
-                    return $"Erro na requisição: {response.StatusCode} - {response.ReasonPhrase}";
+                    return "you will have a great night's sleep.";
+            }
+            else
+                return $"Erro na requisição: {response.StatusCode} - {response.ReasonPhrase}";
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ocorreu um erro: {ex.Message}");
-                return "erro";
-            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ocorreu um erro: {ex.Message}");
+            return "erro";
+        }
     }
 }
