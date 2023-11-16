@@ -32,11 +32,20 @@ public class IA : ControllerBase
                     if (int.TryParse(match.Value, out int extractedNumber))
                         number = extractedNumber;
 
-                if (number <= 5)
+                if (number == 4)
                     return "you're going to have a horrible night's sleep.";
 
-                else if (number <= 7)
+                else if (number == 5)
+                    return "you will have a bad night's sleep.";
+
+                else if (number == 6)
+                    return "you will have a regular night's sleep.";
+
+                else if (number == 7)
                     return "you will have a ok night's sleep.";
+
+                else if (number == 8)
+                    return "you will have a good night's sleep.";
 
                 else
                     return "you will have a great night's sleep.";

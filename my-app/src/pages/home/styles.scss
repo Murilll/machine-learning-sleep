@@ -14,7 +14,7 @@
     background-color: rgb(190, 190, 190);
 }
 .horrible {
-    background-color: red;
+    background-color: #9D1B48;
     height: 100%;
     border-radius: 7px;
     color: white;
@@ -23,7 +23,17 @@
     justify-content: center;
     align-items: center;
 }
-.ok {
+.bad {
+    background-color: #ED2330;
+    height: 100%;
+    border-radius: 7px;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.regular {
     background-color: rgb(255, 187, 0);
     height: 100%;
     border-radius: 7px;
@@ -32,8 +42,26 @@
     justify-content: center;
     align-items: center;
 }
+.ok {
+    background-color: #35693C;
+    height: 100%;
+    border-radius: 7px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.good {
+    background-color: #01AD01;
+    height: 100%;
+    border-radius: 7px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .great {
-    background-color: rgb(0, 225, 255);
+    background-color: rgb(13, 183, 206);
     height: 100%;
     border-radius: 7px;
 

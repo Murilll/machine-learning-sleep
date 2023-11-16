@@ -82,9 +82,33 @@ export default function Home() {
             )
         }
 
+        else if (predictions == "you will have a bad night's sleep.") {
+            return (
+                <div className="bad">
+                    {predictions}
+                </div>
+            )
+        }
+
+        else if (predictions == "you will have a regular night's sleep.") {
+            return (
+                <div className="regular">
+                    {predictions}
+                </div>
+            )
+        }
+
         else if (predictions == "you will have a ok night's sleep.") {
             return (
                 <div className="ok">
+                    {predictions}
+                </div>
+            )
+        }
+
+        else if (predictions == "you will have a good night's sleep.") {
+            return (
+                <div className="good">
                     {predictions}
                 </div>
             )
