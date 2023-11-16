@@ -13,7 +13,6 @@ public class IA : ControllerBase
     public async Task<string> RequestIA([FromBody] PersonData dados)
     {
         using (HttpClient httpClient = new HttpClient())
-
             try
             {
                 string url = "http://localhost:3030/IA";

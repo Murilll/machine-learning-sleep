@@ -11,23 +11,9 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-@app.route('/IA', methods=['POST'])
-def IA():
-    
-    if request.is_json:
-        dados = request.json
-        
-    age = dados['age']
-    bloodPressure = dados['bloodPressure']
-    bmi = dados['bmi']
-    gender = dados['gender']
-    heart = dados['heart']
-    physical = dados['physical']
-    sleepDisorder = dados['sleepDisorder']
-    sleepDuration = dados['sleepDuration']
-    steps = dados['steps']
-    stressLevel = dados['stressLevel']
-    
+file = "training.ia"
+
+def Training(): 
     dataset = pd.read_csv("./Dataset/Sleep_health_and_lifestyle_dataset.csv")
     
     dataset[['PressaoSistolica', 'PressaoDiastolica']] = dataset['Blood Pressure'].str.split("/", expand=True)
@@ -51,11 +37,30 @@ def IA():
     model = DecisionTreeClassifier(max_depth=12, min_samples_split=10)
     model.fit(X_train, Y_train)
     
-    Y_pred = model.predict(X_test)
-    accuracy = accuracy_score(Y_test, Y_pred)
+    dump(model, file)
+    
+    
+    
+@app.route('/IA', methods=['POST'])
+def predict():
+    if request.is_json:
+        dados = request.json
+        
+    age = dados['age']
+    bloodPressure = dados['bloodPressure']
+    bmi = dados['bmi']
+    gender = dados['gender']
+    heart = dados['heart']
+    physical = dados['physical']
+    sleepDisorder = dados['sleepDisorder']
+    sleepDuration = dados['sleepDuration']
+    steps = dados['steps']
+    stressLevel = dados['stressLevel']
+    
+    ia = load(file)
     
     new_data = [[gender, age, sleepDuration, physical, stressLevel, bmi, bloodPressure, heart, steps, sleepDisorder]]
-    predictions = model.predict(new_data)
+    predictions = ia.predict(new_data)
     
     predictions_list = predictions.tolist()
     
@@ -67,9 +72,48 @@ def IA():
     # plot_tree(model)
     # confusion_matrix(Y_test, Y_pred)
 
-@app.route('/hello')
-def hello():
-    return 'hello aaa'
-
 if __name__ == '__main__':
     app.run(host='localhost', port=3030, debug=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

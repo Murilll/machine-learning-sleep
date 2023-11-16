@@ -15,13 +15,23 @@ export default function Home() {
     const [physical, setPhysical] = useState(0);
     const [stress, setStress] = useState(0);
     const [bmi, setBMI] = useState(0);
-    const [bloodPressure, setBloodPressure] = useState(0);
+    const [bloodPressure, setBloodPressure] = useState(" ");
+    const [mediumPressure, setMediumPressure] = useState(0);
     const [heart, setHeart] = useState(0);
     const [steps, setSteps] = useState(0);
     const [sleepDisorder, setDisorder] = useState(0);
 
     const [predictions, setPrediction] = useState("Analyze your sleep");
     const [loading, setLoading] = useState('false');
+
+    function Pressure() {
+        const list = bloodPressure.split('/')
+        var diastolica = parseInt(list[0])
+        var sistolica = parseInt(list[1])
+        const medium = ((2 * diastolica) + sistolica) / 3
+        
+        setMediumPressure(medium)
+    }
 
     const obj = {
         Gender: gender,
@@ -30,7 +40,7 @@ export default function Home() {
         Physical: physical,
         StressLevel: stress,
         BMI: bmi,
-        BloodPressure: bloodPressure,
+        BloodPressure: mediumPressure,
         Heart: heart,
         Steps: steps,
         SleepDisorder: sleepDisorder
@@ -117,10 +127,19 @@ export default function Home() {
                     <InputGroup.Text>Physical Activity Level</InputGroup.Text>
                     <Form.Control aria-label="Dollar amount (with dot and two decimal places)" />
                 </InputGroup>
-                <InputGroup onChange={(e) => setStress(e.target.value)} className="mb-3">
-                    <InputGroup.Text>Stress Level</InputGroup.Text>
-                    <Form.Control aria-label="Dollar amount (with dot and two decimal places)" />
-                </InputGroup>
+                <Form.Select onClick={(e) => setStress(e.target.value)} className="mb-3" aria-label="Default select example">
+                    <option>Stress Level</option>
+                    <option style={{color: 'blue'}} value="0">No pain</option>
+                    <option value="1">Very mild</option>
+                    <option value="2">Discomforting</option>
+                    <option value="3">Tolerable</option>
+                    <option value="4">Distressing</option>
+                    <option value="5">Very distrassing</option>
+                    <option value="6">Intense</option>
+                    <option value="7">Very Intense</option>
+                    <option value="8">Utterly horrible</option>
+                    <option value="9">Unimaginable Unspeakable</option>
+                </Form.Select>
                 <Form.Select onClick={(e) => setBMI(e.target.value)} className="mb-3" aria-label="Default select example">
                     <option>BMI Category</option>
                     <option value="0">Normal</option>
