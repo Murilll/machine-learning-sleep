@@ -59,7 +59,9 @@ def IA():
     
     predictions_list = predictions.tolist()
     
-    response = jsonify({'result': {'person': dados, 'accuracy': accuracy, 'predictions': predictions_list}})
+    # response = jsonify({'result': {'person': dados, 'accuracy': accuracy, 'predictions': predictions_list}})
+    
+    response = predictions_list
     
     return response
 

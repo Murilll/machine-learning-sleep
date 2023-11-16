@@ -1,5 +1,6 @@
 import { Button, InputGroup } from "react-bootstrap"
 import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
 
 import { useCallback, useEffect, useState } from "react";
 
@@ -19,6 +20,9 @@ export default function Home() {
     const [steps, setSteps] = useState(0);
     const [sleepDisorder, setDisorder] = useState(0);
 
+    const [predictions, setPrediction] = useState("Analyze your sleep");
+    const [loading, setLoading] = useState('false');
+
     const obj = {
         Gender: gender,
         Age: age,
@@ -34,12 +38,17 @@ export default function Home() {
 
     const sendObj = useCallback(async () => {
         try {
+            setLoading('border')
             const res = await axios.post('http://localhost:5194/IA', obj)
-            console.log(res)
+            setPrediction(res.data)
         } catch (error) {
             console.log("failed")
         }
+
+        setLoading('false')
     })
+
+
 
     // const fetchData = useCallback(async () => {
     //     try {
@@ -53,6 +62,40 @@ export default function Home() {
     // useEffect(() => {
     //     fetchData()
     // }, [fetchData]);
+
+    function render() {
+        if (predictions == "you're going to have a horrible night's sleep.") {
+            return (
+                <div className="horrible">
+                    {predictions}
+                </div>
+            )
+        }
+
+        else if (predictions == "you will have a ok night's sleep.") {
+            return (
+                <div className="ok">
+                    {predictions}
+                </div>
+            )
+        }
+
+        else if (predictions == "you will have a great night's sleep.") {
+            return (
+                <div className="great">
+                    {predictions}
+                </div>
+            )
+        }
+
+        else {
+            return (
+                <div className="nonenone">
+                    {predictions}
+                </div>
+            )
+        }
+    }
 
     return (
         <div className="sreen">
@@ -104,7 +147,13 @@ export default function Home() {
                     <option value="2">Insomnia</option>
                 </Form.Select>
                 <div>
-                    <Button variant="primary" onClick={() => sendObj()}>Send</Button>{' '}
+                    <Button aria-hidden="true" variant="primary" onClick={() => sendObj()}>Send</Button>{' '}
+                </div>
+                <div className="cardMessage">
+                    <div className="containerMessage">
+                        {render()}
+                        <Spinner animation={loading} role="status" />
+                    </div>
                 </div>
             </div>
         </div>
