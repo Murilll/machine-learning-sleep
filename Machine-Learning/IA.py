@@ -39,8 +39,6 @@ def Training():
     
     dump(model, file)
     
-    
-    
 @app.route('/IA', methods=['POST'])
 def predict():
     if request.is_json:
